@@ -18,7 +18,7 @@ export let framesElement;
 export let currentFrame;
 export const addressInput = document.getElementById("address");
 
-await import("/assets/scram/scramjet.all.js");
+await import("/scram/scramjet.all.js");
 
 const { ScramjetController } = window.$scramjetLoadController();
 
