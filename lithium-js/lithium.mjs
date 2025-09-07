@@ -10,7 +10,6 @@ const connection = new BareMuxConnection("/bareworker.js");
 
 let wispURL;
 let transportURL;
-let proxyOption;
 
 export let tabCounter = 0;
 export let currentTab = 0;
@@ -92,9 +91,6 @@ export function makeURL(input, template = "https://search.brave.com/search?q=%s"
 		return new URL(input).toString();
 	} catch (err) {}
 
-	const url = new URL(`http://${input}`);
-	if (url.hostname.includes(".")) return url.toString();
-
 	return template.replace("%s", encodeURIComponent(input));
 }
 
@@ -147,37 +143,15 @@ export function getWisp() {
 	return wispURL;
 }
 
-/**
- * Sets the proxy backend option and dynamically imports scripts if needed.
- * @param {string} proxy - Proxy backend name.
- * @returns {Promise<void>}
- */
-export async function setProxy(proxy) {
-	console.log(`lethal.js: Setting proxy backend to ${proxy}`);
-	if (proxy === "uv") {
-		await import("https://unpkg.com/@titaniumnetwork-dev/ultraviolet@3.2.10/dist/uv.bundle.js");
-		await import("/assets/uv.config.js");
-	}
-	proxyOption = proxy;
-}
 
 /**
- * Gets the current proxy backend option.
- * @returns {string | undefined}
- */
-export function getProxy() {
-	return proxyOption;
-}
-
-/**
- * Gets the proxied URL based on the current proxy option.
+ * Gets the proxied URL
  * @param {string} input - The input URL or hostname.
  * @returns {Promise<string>}
  */
 export async function getProxied(input) {
 	const url = makeURL(input);
-	if (proxyOption === "scram") return scramjet.encodeUrl(url);
-	return window.__uv$config.prefix + window.__uv$config.encodeUrl(url);
+	return scramjet.encodeUrl(url);
 }
 
 /**
