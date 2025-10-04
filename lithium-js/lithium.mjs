@@ -18,7 +18,7 @@ export let currentFrame;
 export const addressInput = document.getElementById("address");
 export let scramPath = "/scram/"
 
-requestIdleCallBack(() => {
+requestIdleCallBack(async () => {
 await import(`${scramPath}scramjet.all.js`);
 
 const { ScramjetController } = window.$scramjetLoadController();
