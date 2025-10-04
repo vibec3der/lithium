@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lithium JS Example</title>
-    <link type="stylesheet" href="https://app.unpkg.com/tailwindcss@2.0.1/files/dist/tailwind.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lithium JS Example</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"/>
 </head>
-<body>
-<iframe id="frame"></iframe>
-<script>
-<script>
-  // --- LITHIUM IMPORTS ---
-  import {
-    setTransport,
-    setWisp,
-    makeURL,
-    getProxied,
-  } from "/lithium-js/lithium.mjs"
+<body class="m-0 p-0 w-full h-screen">
+  <iframe id="frame" class="w-full h-screen border-0"></iframe>
 
-  setWisp("wss://anura.pro/")
-  setTransport("epoxy")
-async() => {
-  document.getElementById("frame").src = await getProxied(makeURL("lithium js"))
-})();
-</script>
+  <script type="module">
+    // --- LITHIUM IMPORTS ---
+    import {
+      setTransport,
+      setWisp,
+      makeURL,
+      getProxied,
+    } from "./lithium-js/lithium.mjs";
+
+    setWisp("wss://anura.pro/");
+    setTransport("epoxy");
+
+    (async () => {
+      const url = await getProxied(makeURL("https://google.com"));
+      document.getElementById("frame").src = url;
+    })();
+  </script>
 </body>
 </html>
