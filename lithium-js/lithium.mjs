@@ -16,18 +16,17 @@ export let currentTab = 0;
 export let framesElement;
 export let currentFrame;
 export const addressInput = document.getElementById("address");
-export let scramPath = "/scram/"
 
 requestIdleCallback(async () => {
-await import(`${scramPath}scramjet.all.js`);
+await import(`/scram/scramjet.all.js`);
 
 const { ScramjetController } = window.$scramjetLoadController();
 
 const scramjet = new ScramjetController({
 	files: {
-		wasm: `${scramPath}scramjet.wasm.wasm`,
-		all: `${scramPath}scramjet.all.js`,
-		sync: `${scramPath}scramjet.sync.js`,
+		wasm: `/scram/scramjet.wasm.wasm`,
+		all: `/scram/scramjet.all.js`,
+		sync: `/scram/scramjet.sync.js`,
 	},
 	siteFlags: {
 		"https://www.google.com/(search|sorry).*": {
