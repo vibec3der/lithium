@@ -6,7 +6,7 @@
   <title>Lithium JS Example</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"/>
   <!-- ONLY FOR THE EXAMPLE IF YOU PUT SCRAM AT ROOT YOU WILL NOT HAVE TO MANUALLY ADD IT -->
-	<script src="./lithium-js/scram/scramjet.all.js"></script>
+	<script src="./scram/scramjet.all.js"></script>
 </head>
 <body class="m-0 p-0 w-full h-screen">
   <iframe id="frame" class="w-full h-screen border-0"></iframe>
@@ -24,7 +24,7 @@
     setTransport("epoxy");
 
     (async () => {
-      const url = await getProxied(makeURL("https://google.com"));
+      const url = await getProxied(makeURL("https://duckduckgo.com"));
       document.getElementById("frame").src = url;
     })();
   </script>
